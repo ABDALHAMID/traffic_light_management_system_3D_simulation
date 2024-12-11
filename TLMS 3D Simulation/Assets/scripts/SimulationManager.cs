@@ -129,15 +129,26 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
-    public void ToggelSimulation()
-    {
-        simulationRuning = !simulationRuning;
-    }
 
     public void ClearData()
     {
         simulationRuning = false;
         spowner.ClearAll();
+    }
+    
+    public void startSimulation()
+    {
+        simulationRuning = true;
+    }
+
+    public void stopSimulation()
+    {
+        simulationRuning = false;
+    }
+
+    public void resetSimulation()
+    {
+        ClearData();
     }
 
 

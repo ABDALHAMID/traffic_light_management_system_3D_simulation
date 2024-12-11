@@ -9,7 +9,7 @@ public class SceneSimulationManager : MonoBehaviour
 {
 
     public TextMeshProUGUI simulationTimeText;
-    public GameObject startSimulationButton, pauseSimulationButton, playSimulationButton, stopSimulationButton, addSimulationButton;
+    public GameObject startSimulationButton, pauseSimulationButton, playSimulationButton, stopSimulationButton, addSimulationButton, removeSimuationButton;
 
     private float elapsedTime;
 
@@ -32,6 +32,7 @@ public class SceneSimulationManager : MonoBehaviour
         playSimulationButton.SetActive(false);
         stopSimulationButton.SetActive(false);
         addSimulationButton.SetActive(true);
+        removeSimuationButton.SetActive(true);
     }
 
 
@@ -44,13 +45,65 @@ public class SceneSimulationManager : MonoBehaviour
         playSimulationButton.SetActive(false);
         stopSimulationButton.SetActive(true);
         addSimulationButton.SetActive(false);
+        removeSimuationButton.SetActive(false);
+
         foreach (var sim in Simulations)
         {
             if (sim.activeSelf)
-                sim.GetComponentInChildren<SimulationManager>().simulationRuning = true;
+                sim.GetComponentInChildren<SimulationManager>().startSimulation();
         }
     }
 
+    public void PauseSimulation()
+    {
+        simulationsRuning = false;
+        startSimulationButton.SetActive(false);
+        pauseSimulationButton.SetActive(false);
+        playSimulationButton.SetActive(true);
+        stopSimulationButton.SetActive(true);
+        addSimulationButton.SetActive(false);
+        removeSimuationButton.SetActive(false);
+
+        foreach (var sim in Simulations)
+        {
+            if (sim.activeSelf)
+                sim.GetComponentInChildren<SimulationManager>().stopSimulation();
+        }
+    }
+
+    public void PlaySimulation()
+    {
+        simulationsRuning = true;
+        startSimulationButton.SetActive(false);
+        pauseSimulationButton.SetActive(true);
+        playSimulationButton.SetActive(false);
+        stopSimulationButton.SetActive(true);
+        addSimulationButton.SetActive(false);
+        removeSimuationButton.SetActive(false);
+
+        foreach (var sim in Simulations)
+        {
+            if (sim.activeSelf)
+                sim.GetComponentInChildren<SimulationManager>().startSimulation();
+        }
+    }
+
+    public void StopSimulation()
+    {
+        simulationsRuning = false;
+        startSimulationButton.SetActive(true);
+        pauseSimulationButton.SetActive(false);
+        playSimulationButton.SetActive(false);
+        stopSimulationButton.SetActive(false);
+        addSimulationButton.SetActive(true);
+        removeSimuationButton.SetActive(true);
+
+        foreach (var sim in Simulations)
+        {
+            if (sim.activeSelf)
+                sim.GetComponentInChildren<SimulationManager>().resetSimulation();
+        }
+    }
     private void Update()
     {
 
@@ -59,7 +112,7 @@ public class SceneSimulationManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
 
         }
-
+        UpdateGUI();
     }
 
     private void UpdateGUI()
@@ -110,15 +163,14 @@ public class SceneSimulationManager : MonoBehaviour
             Simulations[2].GetComponentInChildren<Camera>().rect = new Rect(.5f, .5f, .5f, .5f);
             Simulations[3].GetComponentInChildren<Camera>().rect = new Rect(.5f, 0, .5f, .5f);
         }
-        foreach (var sim in Simulations)
-        {
-            sim.GetComponentInChildren<Camera>().Render();
-        }
     }
 
     public void RemoveSimulation()
     {
-        Simulations.RemoveAt(NumberOfSimulation - 1);
+        var simulation = Simulations[NumberOfSimulation - 1];
+        Simulations.Remove(simulation);
+        simulation.GetComponentInChildren<SimulationManager>().ClearData();
+        Destroy(simulation);
         NumberOfSimulation--;
         SetCameras();
     }
