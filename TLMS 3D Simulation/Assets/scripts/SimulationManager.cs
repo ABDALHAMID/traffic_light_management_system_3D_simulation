@@ -14,18 +14,18 @@ public class SimulationManager : MonoBehaviour
 
     public Spowner spowner;
 
-    public TextMeshProUGUI totalCars;
+
     public TextMeshProUGUI activeCars;
     public TextMeshProUGUI finishedCars;
-    public TextMeshProUGUI simulationTimeText;
+    
     private int activeTrafficLight = 0;
     public DataCollectorMnager[] dataCollectors;
 
-    private float elapsedTime;
+
 
     private void Start()
     {
-        elapsedTime = 0f;
+        
         SetSimulationType(simulationType);
     }
 
@@ -48,23 +48,16 @@ public class SimulationManager : MonoBehaviour
 
     private void Update()
     {
-        if (simulationRuning)
-        {
-            elapsedTime += Time.deltaTime;
-
-        }
+        
             UpdateGUI();
     }
 
     private void UpdateGUI()
     {
-        totalCars.text = spowner.totalCarsCount.ToString();
         activeCars.text = spowner.activeCarsCount.ToString();
         finishedCars.text = spowner.finishedCarsCount.ToString();
 
-        int minutes = Mathf.FloorToInt(elapsedTime / 60f);
-        int seconds = Mathf.FloorToInt(elapsedTime % 60f);
-        simulationTimeText.text = $"{minutes:00}:{seconds:00}";
+        
     }
 
     // Main coroutine to control traffic lights
@@ -144,7 +137,6 @@ public class SimulationManager : MonoBehaviour
     public void ClearData()
     {
         simulationRuning = false;
-        elapsedTime = 0f;
         spowner.ClearAll();
     }
 

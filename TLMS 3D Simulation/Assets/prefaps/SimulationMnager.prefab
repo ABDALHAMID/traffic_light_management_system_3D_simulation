@@ -44,7 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de0a296682e4905499440b616a45d596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  simulationType: 0
   simulationRuning: 0
+  spowner: {fileID: 0}
+  activeCars: {fileID: 0}
+  finishedCars: {fileID: 0}
   dataCollectors:
   - {fileID: 0}
   - {fileID: 0}
