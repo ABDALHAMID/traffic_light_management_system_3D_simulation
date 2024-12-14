@@ -69,8 +69,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   simulationManager: {fileID: 6190522010758997125, guid: 63968b6089d327c44a2a19aee9d2ad3f, type: 3}
-  speed: 0.7
-  rayLength: 7
+  speed: 1
+  rayLength: 8.5
   carLayer:
     serializedVersion: 2
     m_Bits: 64
