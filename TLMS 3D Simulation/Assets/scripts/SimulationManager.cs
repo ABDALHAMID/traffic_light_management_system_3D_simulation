@@ -8,6 +8,9 @@ using UnityEngine;
 
 public class SimulationManager : MonoBehaviour
 {
+
+
+    public int roundaboutID;
     public SimulationType simulationType = SimulationType.MIFO;
 
     public bool simulationRuning = true;
@@ -25,7 +28,11 @@ public class SimulationManager : MonoBehaviour
 
     private void Start()
     {
-        
+        for (int i = 0; i < dataCollectors.Length; i++)
+        {
+            dataCollectors[i].trafficLight.traficLightID = roundaboutID * 1000 + i;
+            dataCollectors[i].trafficLight.roundaboutId = roundaboutID;
+        }
         SetSimulationType(simulationType);
     }
 

@@ -1,13 +1,15 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System.Collections.Generic;
 using System.Globalization;
 using TMPro;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SceneSimulationManager : MonoBehaviour
 {
-
+    public int simulationId = 0;
+    private int currentENV = 0;
     public TextMeshProUGUI simulationTimeText;
     public GameObject startSimulationButton, pauseSimulationButton, playSimulationButton, stopSimulationButton, addSimulationButton, removeSimuationButton;
 
@@ -133,8 +135,11 @@ public class SceneSimulationManager : MonoBehaviour
         }
         NumberOfSimulation++;
         GameObject simulation = Instantiate(simulationObject, simulationsPostion[NumberOfSimulation - 1], quaternion.identity);
-        Simulations.Add(simulation);
 
+        currentENV++;
+        simulation.GetComponentInChildren<SimulationManager>().roundaboutID = currentENV;
+
+        Simulations.Add(simulation);
         SetCameras();
     }
 

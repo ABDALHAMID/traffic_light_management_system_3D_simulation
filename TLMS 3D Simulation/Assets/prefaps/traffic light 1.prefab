@@ -265,6 +265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c244b0eb122795140b323e4ccb938087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  traficLightID: 0
+  roundaboutId: 0
   simulationManager: {fileID: 0}
   state: 0
   UIImage: {fileID: 8531166365046693555}
@@ -278,9 +280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7120528171030535516}
   - component: {fileID: 7000714542271270745}
-  - component: {fileID: 203450168972829922}
   - component: {fileID: 8744190145794364158}
-  - component: {fileID: 8253090904326354298}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -296,13 +296,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7599803705442777580}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: -0.00076362566, y: 0.9878054, z: -0.004847272, w: -0.15561615}
   m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2956410093081132236}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.562, y: 197.905, z: 0}
 --- !u!20 &7000714542271270745
 Camera:
   m_ObjectHideFlags: 0
@@ -339,7 +339,7 @@ Camera:
   field of view: 60.000004
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -354,14 +354,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &203450168972829922
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7599803705442777580}
-  m_Enabled: 1
 --- !u!114 &8744190145794364158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,18 +398,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &8253090904326354298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7599803705442777580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94f736a5d6cc75941b623ee9de754574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8178579230761852472
 GameObject:
   m_ObjectHideFlags: 0

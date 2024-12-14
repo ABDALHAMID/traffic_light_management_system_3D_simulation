@@ -29,12 +29,40 @@ public class Spowner : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(SpawnCars());
+        //StartCoroutine(SpawnCars());
     }
 
     private void Update()
     {
         spawning = simulationManager.simulationRuning && !stopSpawning;
+    }
+
+    public void spownStaticCar(int index)
+    {
+        if (spawnPoints.Length == 0)
+        {
+            Debug.LogWarning("No spawn points assigned for CarSpawner.");
+            return;
+        }
+
+        Transform spawnPoint = spawnPoints[index];
+
+        int randomCar = Random.Range(0, carPrefabs.Length);
+        GameObject carPrefab = carPrefabs[randomCar];
+
+        // Spawn the car at the chosen spawn point
+        GameObject newCar = Instantiate(carPrefab, spawnPoint.position, spawnPoint.rotation);
+        activeCars.Add(newCar);
+
+        CarController carController = newCar.GetComponent<CarController>();
+        if (carController != null)
+        {
+            carController.simulationManager = simulationManager;
+        }
+        totalCarsCount++;
+        activeCarsCount++;
+        // Add a destroy callback when the car is no longer needed
+        newCar.GetComponent<CarController>().OnCarDestroyed += () => RemoveCar(newCar);
     }
 
     private IEnumerator SpawnCars()

@@ -12,6 +12,9 @@ public enum TrafficLightStates
 }
 public class TrafficLightController : MonoBehaviour
 {
+
+    public int traficLightID;
+    public int roundaboutId;
     public SimulationManager simulationManager;
     public TrafficLightStates state;
     public RawImage UIImage;
